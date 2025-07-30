@@ -1,0 +1,663 @@
+/* General Resets and Body Styling (No Change) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Header/Top Bar Styling (No Change) */
+.top-bar {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 10px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-logo {
+    height: 40px;
+    width: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.top-bar h1 {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.main-nav .nav-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.main-nav .nav-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+}
+
+.main-nav .nav-button:active {
+    transform: translateY(0);
+}
+
+/* Editor Layout (Main Content) (No Change) */
+.editor-layout {
+    display: flex;
+    flex-grow: 1;
+    background-color: #fdfdfd;
+    position: relative;
+}
+
+/* Components Panel (Left Sidebar) (No Change - except new items in HTML) */
+.components-panel {
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    padding: 20px;
+    width: 250px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.03);
+}
+
+.components-panel h2 {
+    margin-top: 0;
+    color: #34495e;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.component-item {
+    background-color: #e8f5e9;
+    border: 1px solid #a5d6a7;
+    color: #2e7d32;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    cursor: grab;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: center;
+    font-weight: bold;
+    user-select: none;
+}
+
+.component-item:hover {
+    background-color: #dcedc8;
+    transform: translateY(-2px);
+}
+
+.component-item:active {
+    cursor: grabbing;
+}
+
+.component-item.dragging {
+    opacity: 0.7;
+    border-style: dashed;
+}
+
+/* Editor Canvas Wrapper and Controls (No Change) */
+.editor-canvas-wrapper {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.canvas-controls {
+    background-color: #ecf0f1;
+    padding: 10px 20px;
+    border-bottom: 1px solid #dcdcdc;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.canvas-controls .control-button {
+    background-color: #7f8c8d;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: background-color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.canvas-controls .control-button:hover:not(:disabled) {
+    background-color: #95a5a6;
+}
+
+.canvas-controls .control-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.editor-canvas {
+    flex-grow: 1;
+    background-color: #fdfdfd;
+    border: 2px dashed #bdc3c7;
+    border-radius: 0 0 8px 8px;
+    margin: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+    min-height: calc(100% - 80px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.editor-canvas.drag-over {
+    background-color: #e0f2f7;
+    border-color: #3498db;
+}
+
+.initial-prompt {
+    color: #7f8c8d;
+    font-size: 1.5em;
+    text-align: center;
+    user-select: none;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+/* Properties Panel (Right Sidebar) (No Change) */
+.properties-panel {
+    background-color: #ffffff;
+    border-left: 1px solid #e0e0e0;
+    padding: 20px;
+    width: 300px;
+    flex-shrink: 0;
+    overflow-y: auto;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.03);
+}
+
+.properties-panel h2 {
+    margin-top: 0;
+    color: #34495e;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+}
+
+.properties-panel .no-element-selected {
+    color: #7f8c8d;
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+}
+
+/* Property field styling (No Change) */
+.property-group {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.property-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.property-group input[type="text"],
+.property-group input[type="number"],
+.property-group input[type="color"],
+.property-group textarea,
+.property-group select {
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    margin-top: 3px;
+}
+
+.property-group textarea {
+    min-height: 60px;
+    resize: vertical;
+}
+
+/* --- Styles for Dropped Elements on Canvas (existing) --- */
+.dropped-element {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: calc(100% - 30px);
+    box-sizing: border-box;
+    position: relative;
+    min-height: 50px;
+    cursor: grab;
+    transition: all 0.1s ease-out;
+}
+
+.dropped-element.selected {
+    outline: 2px solid #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3), 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: grab;
+}
+
+.dropped-element.dragging-reorder {
+    opacity: 0.3;
+}
+
+/* Visual indicator for reorder position */
+#drop-indicator {
+    height: 4px;
+    background-color: #3498db;
+    margin: 5px 0;
+    border-radius: 2px;
+    width: calc(100% - 30px);
+}
+
+/* --- Specific component styles (existing) --- */
+.dropped-element.text-block {
+    background-color: #e3f2fd;
+    border-color: #90caf9;
+    font-size: 16px;
+    color: #333;
+}
+.text-block p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+.dropped-element.image-block {
+    background-color: #fbe9e7;
+    border-color: #ffccbc;
+    text-align: center;
+}
+.image-block img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.dropped-element.button-block {
+    background-color: #e1f7d5;
+    border-color: #c5e1a5;
+    text-align: center;
+}
+.button-block .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--button-bg-color, #3498db); /* Use CSS variable */
+    color: var(--button-text-color, white); /* Use CSS variable */
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+.button-block .btn:hover {
+    background-color: #2980b9;
+}
+
+.dropped-element.navbar-block {
+    background-color: #ecf0f1;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60px;
+}
+
+.navbar-block .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2c3e50;
+    cursor: text;
+    padding: 5px;
+}
+
+.navbar-block .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-block .nav-links li a {
+    text-decoration: none;
+    color: #34495e;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: text;
+    padding: 5px;
+}
+
+.navbar-block .nav-links li a:hover {
+    color: #3498db;
+}
+
+.dropped-element.footer-block {
+    background-color: #34495e;
+    color: #ecf0f1;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #2c3e50;
+    font-size: 0.9em;
+    min-height: 80px;
+}
+
+.footer-block .copyright {
+    margin-bottom: 10px;
+    cursor: text;
+    padding: 5px;
+}
+
+.footer-block .social-links a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+    cursor: text;
+    padding: 5px;
+}
+
+.footer-block .social-links a:hover {
+    color: #3498db;
+}
+
+.dropped-element.section-block {
+    background-color: #f8f8f8;
+    border: 1px dashed #cccccc;
+    min-height: 150px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    color: #555;
+    font-style: italic;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+}
+.section-block::before {
+    content: "Container/Section";
+    font-size: 0.8em;
+    color: #999;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+.section-block .dropped-element {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+
+.dropped-element.heading-block {
+    background-color: #e0f2f7;
+    border-color: #a7d9e4;
+    font-size: 2em;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: left;
+    padding: 10px 15px;
+}
+.heading-block h1 {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+}
+
+/* --- NEW COMPONENT STYLES (existing) --- */
+
+.dropped-element.columns-block {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 15px;
+    display: flex;
+    gap: 15px;
+    min-height: 120px;
+}
+
+.columns-block .column {
+    flex: 1;
+    border: 1px dashed #ccc;
+    background-color: #ffffff;
+    padding: 15px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #777;
+    font-style: italic;
+    text-align: center;
+}
+.columns-block .column::before {
+    content: "Drop Here";
+    font-size: 0.75em;
+    color: #bbb;
+    margin-bottom: 10px;
+    pointer-events: none;
+}
+.columns-block .column .dropped-element {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.dropped-element.icon-block {
+    background-color: #fffde7;
+    border-color: #ffe082;
+    text-align: center;
+    font-size: 3em;
+    color: #fbc02d;
+    padding: 10px;
+}
+.icon-block i {
+    cursor: pointer;
+}
+
+
+.dropped-element.video-block {
+    background-color: #e0f7fa;
+    border-color: #80deea;
+    text-align: center;
+    padding: 10px;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.video-block iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 160px;
+    border: none;
+    border-radius: 5px;
+}
+.video-block .placeholder-text {
+    font-style: italic;
+    color: #666;
+}
+
+/* --- NEW CAROUSEL COMPONENT STYLES --- */
+.dropped-element.carousel-block {
+    background-color: #f0f8ff; /* Light blue */
+    border: 1px solid #cceeff;
+    padding: 10px;
+    position: relative; /* For absolute positioning of controls */
+    overflow: hidden; /* Hide overflowing slides */
+    height: 300px; /* Fixed height for simplicity */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-slides-container {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+}
+
+.carousel-slide {
+    min-width: 100%; /* Each slide takes full width */
+    height: 100%;
+    background-color: #e9f5fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    color: #666;
+    border: 1px dashed #aed6f1;
+    box-sizing: border-box;
+    position: relative; /* For image positioning inside slide */
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ensure image fits within slide */
+    display: block;
+    margin: auto; /* Center image */
+}
+
+.carousel-slide .slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3); /* Semi-transparent overlay for editing */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.2s ease;
+}
+
+.carousel-slide:hover .slide-overlay {
+    opacity: 1; /* Show overlay on hover */
+}
+
+.carousel-slide .slide-overlay.editing-active {
+    opacity: 1; /* Keep visible when editing */
+}
+
+.carousel-control-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1.5em;
+    z-index: 1;
+    border-radius: 50%;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.carousel-control-btn:hover {
+    opacity: 1;
+}
+
+.carousel-control-btn.prev {
+    left: 10px;
+}
+
+.carousel-control-btn.next {
+    right: 10px;
+}
+
+/* Responsive considerations (basic for now) (No Change) */
+@media (max-width: 900px) {
+    .editor-layout {
+        flex-direction: column;
+    }
+    .components-panel, .properties-panel {
+        width: 100%;
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: none;
+        padding: 15px;
+    }
+    .properties-panel {
+        order: 3;
+    }
+    .editor-canvas-wrapper {
+        order: 2;
+        margin: 0;
+    }
+    .editor-canvas {
+        margin: 15px;
+        border-radius: 8px;
+    }
+    .top-bar {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    .main-nav {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .main-nav .nav-button {
+        margin: 5px;
+    }
+}

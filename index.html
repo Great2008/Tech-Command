@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Command - No-Code Website Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo-container">
+            <img src="tech-command.jpg" alt="Tech Command Logo" class="app-logo">
+            <h1>Tech Command</h1>
+        </div>
+        <nav class="main-nav">
+            <button class="nav-button" id="saveProjectBtn"><i class="fas fa-save"></i> Save</button>
+            <button class="nav-button" id="previewBtn"><i class="fas fa-eye"></i> Preview</button>
+            <button class="nav-button" id="exportHtmlBtn"><i class="fas fa-download"></i> Export HTML</button>
+        </nav>
+    </header>
+
+    <main class="editor-layout">
+        <aside class="components-panel">
+            <h2>Components</h2>
+            <div class="component-item" draggable="true" data-type="text">Text Block</div>
+            <div class="component-item" draggable="true" data-type="image">Image Block</div>
+            <div class="component-item" draggable="true" data-type="button">Button</div>
+            <div class="component-item" draggable="true" data-type="navbar">Navigation Bar</div>
+            <div class="component-item" draggable="true" data-type="footer">Footer</div>
+            <div class="component-item" draggable="true" data-type="section">Section/Container</div>
+            <div class="component-item" draggable="true" data-type="heading">Heading</div>
+            <div class="component-item" draggable="true" data-type="columns">Columns (2)</div>
+            <div class="component-item" draggable="true" data-type="icon">Icon</div>
+            <div class="component-item" draggable="true" data-type="video">Video Embed</div>
+            <div class="component-item" draggable="true" data-type="carousel">Image Carousel</div>
+        </aside>
+
+        <section class="editor-canvas-wrapper">
+            <div class="canvas-controls">
+                <button id="undoBtn" class="control-button" disabled><i class="fas fa-undo"></i> Undo</button>
+                <button id="redoBtn" class="control-button" disabled><i class="fas fa-redo"></i> Redo</button>
+            </div>
+            <div class="editor-canvas" id="editor-canvas">
+                <p class="initial-prompt">Drag and Drop Elements Here to Build Your Page</p>
+            </div>
+        </section>
+
+        <aside class="properties-panel" id="properties-panel">
+            <h2>Element Properties</h2>
+            <p class="no-element-selected">Select an element on the canvas to edit its properties.</p>
+            <div id="property-fields">
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
